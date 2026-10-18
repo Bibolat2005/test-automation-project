@@ -1,168 +1,40 @@
-# SIS 2: Playwright + Toolshop
+# SIS 2 — Playwright Test Automation
 
-Это проект для проверки чужого сайта автоматическими тестами. Создавать интернет-магазин не нужно. Playwright запускает браузер, заполняет формы и нажимает кнопки. Assertions проверяют результат: например, действительно ли появился заказ. Если действие выполнено, но результат неверный, тест должен сообщить об ошибке.
+All tests are passing and the reports are attached
+This project contains seven automated tests for:
+https://practicesoftwaretesting.com
 
-Пять групп из слайда 28 представлены пятью файлами и семью тестами. Подробные условия и ожидаемые результаты находятся в Description.md. Отрицательный тест считается успешным, когда сайт правильно отклоняет неверные данные.
+The tests cover:
+- Customer registration
+- Login with valid and invalid credentials
+- Buying a product
+- Comparing two products
+- Password reset with registered and unregistered emails
 
-## 1. Подготовь компьютер Windows
+The project uses TypeScript, Playwright, Page Objects and fixtures. Each test runs independently and creates its own test data when needed.
 
-1. Скачай Node.js версии 24 LTS с https://nodejs.org/ и установи с обычными настройками. npm устанавливается вместе с Node.js.
-2. Скачай Visual Studio Code с https://code.visualstudio.com/ и установи.
-3. Распакуй архив целиком: правая кнопка → «Извлечь всё». Не запускай проект внутри ZIP.
-4. В VS Code выбери File → Open Folder и открой `sis2-playwright`. В открытой папке должен сразу находиться package.json.
-5. Открой Terminal → New Terminal. В меню рядом с плюсом терминала выбери Command Prompt, если PowerShell блокирует npm.ps1.
-6. Введи по одной команде:
+## How to run
 
-```bat
-node -v
-npm -v
-```
+Open a terminal in the sis2-playwright folder and run:
 
-Обе команды должны вывести номер версии. Если команда не найдена, перезапусти VS Code после установки Node.js.
-
-## 2. Установи зависимости один раз
-
-В терминале папки проекта выполни:
-
-```bat
 npm ci
 npx playwright install chromium
-```
-
-`npm ci` устанавливает версии из package-lock.json. Вариант преподавателя `npm install` тоже поддерживается. Вторая команда скачивает браузер Chromium, которым управляет Playwright. Обычный установленный Google Chrome не заменяет эту установку.
-
-Дождись окончания каждой команды. Папку node_modules вручную создавать не нужно.
-
-## 3. Проверь код и запусти все тесты
-
-```bat
-npm run typecheck
 npm test
-```
 
-Первая команда проверяет TypeScript. Успех обычно означает отсутствие сообщений об ошибках. Вторая запускает семь проверок в браузере без видимого окна.
+To watch the tests in the browser:
 
-Успешный итог обычного запуска: **7 passed**, **0 failed**, без skipped. Надпись `Running 7 tests using 2 workers` означает, что тесты выполняются двумя параллельными процессами.
-
-Для просмотра действий в окне браузера:
-
-```bat
 npm run test:headed
-```
 
-Не кликай внутри управляемого браузера во время выполнения. Окна могут закрываться после тестов — это нормально.
+To open the test report:
 
-## 4. Открой отчёт
-
-```bat
 npm run report
-```
 
-Откроется HTML-отчёт. Если браузер не открылся автоматически, перейди по локальному адресу, который напечатан в терминале. Нажми на тест: увидишь длительность, действия и прикреплённый screenshot. Для возврата управления терминалом нажми Ctrl+C.
+In Windows PowerShell, use npm.cmd and npx.cmd if script execution is blocked.
 
-Команда `npm run test:ui` открывает режим разработки: слева выбери тест и нажми запуск. Это необязательный способ разобраться в каждом шаге.
+## Documentation
 
-## 5. Что находится в проекте
+- Description.md — test cases and expected results
+- Prompt.md — AI prompts
+- Review.md — problems found and changes made
+- evidence/ — screenshots and test results
 
-| Путь | Назначение |
-|---|---|
-| tests/register.spec.ts | Регистрация и проверка созданного аккаунта |
-| tests/login.spec.ts | Успешный и неуспешный вход |
-| tests/buy-product.spec.ts | Корзина, адрес, оплата и подтверждение заказа |
-| tests/compare-products.spec.ts | Сравнение названий и цен |
-| tests/reset-password.spec.ts | Подтверждение восстановления и незарегистрированный email |
-| pages/ | Как взаимодействовать с каждой страницей; здесь лежат локаторы |
-| fixtures/pages.fixture.ts | Подготовка объектов страниц и отдельных пользователей |
-| data/user.factory.ts | Новые синтетические данные; уникальный email для каждого теста |
-| playwright.config.ts | Адрес сайта, браузер, ожидания, параллельность и отчёты |
-| Description.md | Что автоматизировано и какой результат ожидается |
-| Prompt.md | Реальный запрос к ИИ и обозначение инструмента |
-| Review.md | Проверка результата ИИ, исправления и ограничения |
-| evidence/ | Сохранённые результаты проверок и материалы для сдачи |
-
-Test case (TC) — отдельная проверка. Test suite — группа проверок. Locator — способ найти элемент, например поле email. Page Object — класс с действиями одной страницы. Fixture — подготовка для теста. Assertion — проверка ожидаемого результата, которая может завершить тест ошибкой.
-
-## 6. Сделай свои скриншоты для сдачи
-
-1. Сделай скриншот этого диалога, где видны твой запрос и ответ ИИ. Win+Shift+S → выдели область → сохрани в `evidence/ai-response.png`.
-2. После своего `npm test` сделай скриншот терминала с результатом и сохрани в `evidence/my-run.png`.
-3. В `npm run report` сделай скриншот списка тестов и сохрани в `evidence/my-report.png`.
-4. В Review.md дополни раздел Student review своими реальными действиями. Не утверждай, что лично что-то проверил или исправил, если ещё этого не делал.
-
-Скриншоты, уже включённые в evidence, относятся к проверке помощником. Они не заменяют твой собственный запуск. Автоматически создаваемые test-results и playwright-report не нужно загружать в репозиторий целиком. Они исключены через .gitignore; выбранные доказательства лежат отдельно в evidence.
-
-## 7. Проверь независимость, если менял код
-
-```bat
-npm run test:parallel
-```
-
-Это те же 7 тестов с 4 workers. Проверка повторяемости:
-
-```bat
-npm run test:stability
-```
-
-Ожидается 14 passed: каждый тест выполнен два раза. Это осмысленная проверка повторяемости, а не автоматические retries. В конфигурации retries равен 0. Не запускай повторения бесконечно: сайт общий.
-
-Один отдельный файл:
-
-```bat
-npx playwright test tests/buy-product.spec.ts --headed
-```
-
-## 8. Опубликуй публичный GitHub-репозиторий
-
-Самый простой путь — GitHub Desktop: https://desktop.github.com/ .
-
-1. Установи GitHub Desktop, войди в свой GitHub.
-2. File → Add local repository → Choose → выбери папку sis2-playwright.
-3. Если GitHub Desktop сообщает, что это не репозиторий, нажми предложенное `create a repository here`. Проверь, что выбран именно каталог проекта с package.json.
-4. В Changes проверь состав: tests, pages, fixtures, data, markdown-файлы, package.json, package-lock.json, config, evidence. **node_modules, test-results и playwright-report не должны попадать в commit.**
-5. Если есть незакоммиченные файлы, введи Summary: `Complete SIS 2 Playwright tests` → Commit to main.
-6. Нажми Publish repository. Имя: `sis2-playwright-toolshop`. **Сними галочку Keep this code private**: преподавателю нужен Public. Нажми Publish repository.
-7. Открой View on GitHub. Проверь, что рядом с именем написано Public.
-8. Скопируй ссылку вида `https://github.com/ТВОЙ-ЛОГИН/sis2-playwright-toolshop`.
-9. Открой ссылку в режиме инкогнито: файлы должны читаться без входа.
-
-Не загружай только ZIP: преподаватель должен видеть файлы проекта в репозитории.
-
-Альтернатива через установленный Git и терминал, после создания пустого Public-репозитория на GitHub:
-
-```bat
-git init
-git add .
-git commit -m "Complete SIS 2 Playwright tests"
-git branch -M main
-git remote add origin https://github.com/YOUR-USERNAME/sis2-playwright-toolshop.git
-git push -u origin main
-```
-
-Замени YOUR-USERNAME своим логином. Авторизацию GitHub проходи в его окне. Не публикуй токены доступа.
-
-## 9. Сдай работу
-
-Открой форму из задания:
-https://docs.google.com/forms/d/e/1FAIpQLSeG3uxaPlfoz9ECk9a46oP2qo4d-mm9g5LjeTKrUIpSRMDnxw/viewform?usp=publish-editor
-
-Заполни свои данные и вставь ссылку на Public-репозиторий в соответствующее поле. Если в форме есть дополнительные вопросы, ответь по их фактическим названиям. После заполнения отправь форму и сохрани подтверждение. По сообщению преподавателя срок — **23 октября**; точное время в задании не указано. В слайдах также упомянут чат курса — при необходимости продублируй ссылку туда.
-
-## 10. Если появилась ошибка
-
-| Ошибка | Что сделать |
-|---|---|
-| npm / node is not recognized | Установить Node.js, закрыть и заново открыть VS Code |
-| npm.ps1 cannot be loaded | Выбрать Command Prompt вместо PowerShell или использовать npm.cmd и npx.cmd |
-| package.json not found | Открыть терминал именно в папке sis2-playwright |
-| Executable doesn't exist | Выполнить npx playwright install chromium |
-| Timeout / ERR_CONNECTION | Проверить открытие сайта в обычном браузере; посмотреть конкретный шаг отчёта |
-| Expected text / element not found | Открыть тест в отчёте и screenshot: сайт мог изменить форму или текст |
-| Address already in use при отчёте | Закрыть предыдущий show-report через Ctrl+C |
-
-Не убирай assertions и не добавляй skip ради зелёного результата. Сбой — информация о проблеме в сайте, окружении или тесте. Для диагностики отправь полный текст ошибки и screenshot из отчёта.
-
-При ошибке сохраняется trace. Его можно открыть из HTML-отчёта или командой `npx playwright show-trace ПУТЬ-К-trace.zip`.
-
-## Ограничения
-
-Живой учебный сайт и его данные меняются. Зафиксированные успешные запуски подтверждают проверенную версию проекта на дату проверки, но не гарантируют результат навсегда. Внешняя сеть, недоступность сервиса, изменения локаторов и реальные баги должны оставаться видимыми. Неиспользуемые настройки PW_PROXY и PW_IGNORE_HTTPS_ERRORS нужны только в управляемом окружении помощника; на обычном компьютере их задавать не надо.
