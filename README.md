@@ -6,7 +6,8 @@ The main screenshots:
 <img width="1915" height="1066" alt="Снимок экрана 2026-10-18 133747" src="https://github.com/user-attachments/assets/3c79a6a6-ee36-47cd-a799-a595d6d2d662" />
 <img width="1552" height="1077" alt="Снимок экрана 2026-10-18 133854" src="https://github.com/user-attachments/assets/1c507708-57e1-4dc9-93c6-69e08b4172ea" />
 
-
+AI Assistant response example
+<img width="1283" height="875" alt="image" src="https://github.com/user-attachments/assets/d14eab49-23fb-4a1f-b3fd-89298b8b7260" />
 
 
 This project contains seven automated tests for:
