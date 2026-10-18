@@ -1,0 +1,124 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+Running 7 tests using 2 workers
+
+(node:61) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:62) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:61) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:62) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  2 [chromium] › tests/compare-products.spec.ts:2:5 › TC05 - Combination Pliers and Pliers are distinct and have different positive prices (27.1s)
+  ✓  3 [chromium] › tests/login.spec.ts:2:5 › TC02 - valid credentials reach the account page (23.1s)
+  ✘  1 [chromium] › tests/buy-product.spec.ts:2:5 › TC04 - buy two Combination Pliers and complete checkout (1.0m)
+(node:337) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:337) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  4 [chromium] › tests/login.spec.ts:7:5 › TC03 - invalid credentials show an error and stay on login (25.3s)
+  ✓  6 [chromium] › tests/reset-password.spec.ts:2:5 › TC06 - known customer receives password-reset confirmation (24.4s)
+  ✓  5 [chromium] › tests/register.spec.ts:2:5 › TC01 - register a unique customer and verify the account by signing in (27.7s)
+  ✘  7 [chromium] › tests/reset-password.spec.ts:7:5 › TC07 - malformed email is rejected by password-reset validation (36.4s)
+
+
+  1) [chromium] › tests/buy-product.spec.ts:2:5 › TC04 - buy two Combination Pliers and complete checkout 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: getByTestId('order-confirmation')
+    Expected substring: [32m"Thanks for your order!"[39m
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 15000ms[22m
+    [2m  - waiting for getByTestId('order-confirmation')[22m
+
+
+       at ../pages/checkout.page.ts:19
+
+      17 |   }
+      18 |   async expectOrderConfirmed() {
+    > 19 |     await expect(this.page.getByTestId('order-confirmation')).toContainText('Thanks for your order!');
+         |                                                               ^
+      20 |   }
+      21 | }
+      22 |
+        at CheckoutPage.expectOrderConfirmed (/workspace/scratch/1183767fb436/sis2-playwright/pages/checkout.page.ts:19:63)
+        at /workspace/scratch/1183767fb436/sis2-playwright/tests/buy-product.spec.ts:12:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/buy-product-TC04---buy-two-ac021-liers-and-complete-checkout-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/buy-product-TC04---buy-two-ac021-liers-and-complete-checkout-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/buy-product-TC04---buy-two-ac021-liers-and-complete-checkout-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/buy-product-TC04---buy-two-ac021-liers-and-complete-checkout-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/buy-product-TC04---buy-two-ac021-liers-and-complete-checkout-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests/reset-password.spec.ts:7:5 › TC07 - malformed email is rejected by password-reset validation 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: getByTestId('email-error')
+    Expected substring: [32m"Email format is invalid"[39m
+    Received string:    [31m""[39m
+    Timeout: 15000ms
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 15000ms[22m
+    [2m  - waiting for getByTestId('email-error')[22m
+    [2m    18 × locator resolved to <div id="email-error" data-test="email-error" class="alert alert-danger">…</div>[22m
+    [2m       - unexpected value ""[22m
+
+
+       at ../pages/reset-password.page.ts:15
+
+      13 |   }
+      14 |   async expectInvalidEmail() {
+    > 15 |     await expect(this.page.getByTestId('email-error')).toContainText('Email format is invalid');
+         |                                                        ^
+      16 |     await expect(this.page).toHaveURL(/\/auth\/forgot-password$/);
+      17 |   }
+      18 | }
+        at ResetPasswordPage.expectInvalidEmail (/workspace/scratch/1183767fb436/sis2-playwright/pages/reset-password.page.ts:15:56)
+        at /workspace/scratch/1183767fb436/sis2-playwright/tests/reset-password.spec.ts:10:27
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/reset-password-TC07---malf-e6201-y-password-reset-validation-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/reset-password-TC07---malf-e6201-y-password-reset-validation-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/reset-password-TC07---malf-e6201-y-password-reset-validation-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/reset-password-TC07---malf-e6201-y-password-reset-validation-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/reset-password-TC07---malf-e6201-y-password-reset-validation-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [chromium] › tests/buy-product.spec.ts:2:5 › TC04 - buy two Combination Pliers and complete checkout 
+    [chromium] › tests/reset-password.spec.ts:7:5 › TC07 - malformed email is rejected by password-reset validation 
+  5 passed (2.4m)
+
+To open last HTML report run:
+[36m[39m
+[36m  npx playwright show-report[39m
+[36m[39m

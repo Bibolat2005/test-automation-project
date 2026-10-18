@@ -1,0 +1,474 @@
+{
+  "config": {
+    "configFile": "/workspace/scratch/1183767fb436/sis2-playwright/playwright.config.ts",
+    "rootDir": "/workspace/scratch/1183767fb436/sis2-playwright/tests",
+    "forbidOnly": true,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/workspace/scratch/1183767fb436/sis2-playwright/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/workspace/scratch/1183767fb436/sis2-playwright/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 90000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.56.1",
+    "workers": 2,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "buy-product.spec.ts",
+      "file": "buy-product.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "TC04 - buy two Combination Pliers and complete checkout",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 62058,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('order-confirmation')\nExpected substring: \u001b[32m\"Thanks for your order!\"\u001b[39m\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('order-confirmation')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('order-confirmation')\nExpected substring: \u001b[32m\"Thanks for your order!\"\u001b[39m\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('order-confirmation')\u001b[22m\n\n    at CheckoutPage.expectOrderConfirmed (/workspace/scratch/1183767fb436/sis2-playwright/pages/checkout.page.ts:19:63)\n    at /workspace/scratch/1183767fb436/sis2-playwright/tests/buy-product.spec.ts:12:22",
+                    "location": {
+                      "file": "/workspace/scratch/1183767fb436/sis2-playwright/pages/checkout.page.ts",
+                      "column": 63,
+                      "line": 19
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39m../pages/checkout.page.ts:19\n\n  17 |   }\n  18 |   async expectOrderConfirmed() {\n> 19 |     await expect(this.page.getByTestId('order-confirmation')).toContainText('Thanks for your order!');\n     |                                                               ^\n  20 |   }\n  21 | }\n  22 |"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/workspace/scratch/1183767fb436/sis2-playwright/pages/checkout.page.ts",
+                        "column": 63,
+                        "line": 19
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('order-confirmation')\nExpected substring: \u001b[32m\"Thanks for your order!\"\u001b[39m\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('order-confirmation')\u001b[22m\n\n\n   at ../pages/checkout.page.ts:19\n\n  17 |   }\n  18 |   async expectOrderConfirmed() {\n> 19 |     await expect(this.page.getByTestId('order-confirmation')).toContainText('Thanks for your order!');\n     |                                                               ^\n  20 |   }\n  21 | }\n  22 |\n    at CheckoutPage.expectOrderConfirmed (/workspace/scratch/1183767fb436/sis2-playwright/pages/checkout.page.ts:19:63)\n    at /workspace/scratch/1183767fb436/sis2-playwright/tests/buy-product.spec.ts:12:22"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T14:47:48.789Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/workspace/scratch/1183767fb436/sis2-playwright/test-results/buy-product-TC04---buy-two-ac021-liers-and-complete-checkout-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/workspace/scratch/1183767fb436/sis2-playwright/test-results/buy-product-TC04---buy-two-ac021-liers-and-complete-checkout-chromium/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/workspace/scratch/1183767fb436/sis2-playwright/test-results/buy-product-TC04---buy-two-ac021-liers-and-complete-checkout-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/workspace/scratch/1183767fb436/sis2-playwright/test-results/buy-product-TC04---buy-two-ac021-liers-and-complete-checkout-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/workspace/scratch/1183767fb436/sis2-playwright/pages/checkout.page.ts",
+                    "column": 63,
+                    "line": 19
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "2c995aafd4029bd0ebf3-2669a5f585755bf10a93",
+          "file": "buy-product.spec.ts",
+          "line": 2,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "compare-products.spec.ts",
+      "file": "compare-products.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "TC05 - Combination Pliers and Pliers are distinct and have different positive prices",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 27051,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T14:47:49.776Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/workspace/scratch/1183767fb436/sis2-playwright/test-results/compare-products-TC05---Co-4620b-e-different-positive-prices-chromium/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "45048e963b8f17801e4d-3ecbc6e0162b1a4028fb",
+          "file": "compare-products.spec.ts",
+          "line": 2,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "login.spec.ts",
+      "file": "login.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "TC02 - valid credentials reach the account page",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 23069,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T14:48:17.299Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/workspace/scratch/1183767fb436/sis2-playwright/test-results/login-TC02---valid-credentials-reach-the-account-page-chromium/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "41d3fd2474a19feb00a1-839217c7a59dcc6b4967",
+          "file": "login.spec.ts",
+          "line": 2,
+          "column": 5
+        },
+        {
+          "title": "TC03 - invalid credentials show an error and stay on login",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 25279,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T14:48:40.437Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/workspace/scratch/1183767fb436/sis2-playwright/test-results/login-TC03---invalid-crede-6f175--an-error-and-stay-on-login-chromium/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "41d3fd2474a19feb00a1-af5ef345ac62941d11de",
+          "file": "login.spec.ts",
+          "line": 7,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "register.spec.ts",
+      "file": "register.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "TC01 - register a unique customer and verify the account by signing in",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 27693,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T14:49:01.099Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/workspace/scratch/1183767fb436/sis2-playwright/test-results/register-TC01---register-a-5501e-y-the-account-by-signing-in-chromium/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ab6fb19b790d2390d751-215adb8e1d27105e69bf",
+          "file": "register.spec.ts",
+          "line": 2,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "reset-password.spec.ts",
+      "file": "reset-password.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "TC06 - known customer receives password-reset confirmation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 24408,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T14:49:05.781Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/workspace/scratch/1183767fb436/sis2-playwright/test-results/reset-password-TC06---know-0b413-password-reset-confirmation-chromium/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "193bb8f07ddb614d27ad-2339b2c6df9c58b1bd13",
+          "file": "reset-password.spec.ts",
+          "line": 2,
+          "column": 5
+        },
+        {
+          "title": "TC07 - malformed email is rejected by password-reset validation",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "failed",
+                  "duration": 36449,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('email-error')\nExpected substring: \u001b[32m\"Email format is invalid\"\u001b[39m\nReceived string:    \u001b[31m\"\"\u001b[39m\nTimeout: 15000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('email-error')\u001b[22m\n\u001b[2m    18 × locator resolved to <div id=\"email-error\" data-test=\"email-error\" class=\"alert alert-danger\">…</div>\u001b[22m\n\u001b[2m       - unexpected value \"\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('email-error')\nExpected substring: \u001b[32m\"Email format is invalid\"\u001b[39m\nReceived string:    \u001b[31m\"\"\u001b[39m\nTimeout: 15000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('email-error')\u001b[22m\n\u001b[2m    18 × locator resolved to <div id=\"email-error\" data-test=\"email-error\" class=\"alert alert-danger\">…</div>\u001b[22m\n\u001b[2m       - unexpected value \"\"\u001b[22m\n\n    at ResetPasswordPage.expectInvalidEmail (/workspace/scratch/1183767fb436/sis2-playwright/pages/reset-password.page.ts:15:56)\n    at /workspace/scratch/1183767fb436/sis2-playwright/tests/reset-password.spec.ts:10:27",
+                    "location": {
+                      "file": "/workspace/scratch/1183767fb436/sis2-playwright/pages/reset-password.page.ts",
+                      "column": 56,
+                      "line": 15
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39m../pages/reset-password.page.ts:15\n\n  13 |   }\n  14 |   async expectInvalidEmail() {\n> 15 |     await expect(this.page.getByTestId('email-error')).toContainText('Email format is invalid');\n     |                                                        ^\n  16 |     await expect(this.page).toHaveURL(/\\/auth\\/forgot-password$/);\n  17 |   }\n  18 | }"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/workspace/scratch/1183767fb436/sis2-playwright/pages/reset-password.page.ts",
+                        "column": 56,
+                        "line": 15
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('email-error')\nExpected substring: \u001b[32m\"Email format is invalid\"\u001b[39m\nReceived string:    \u001b[31m\"\"\u001b[39m\nTimeout: 15000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('email-error')\u001b[22m\n\u001b[2m    18 × locator resolved to <div id=\"email-error\" data-test=\"email-error\" class=\"alert alert-danger\">…</div>\u001b[22m\n\u001b[2m       - unexpected value \"\"\u001b[22m\n\n\n   at ../pages/reset-password.page.ts:15\n\n  13 |   }\n  14 |   async expectInvalidEmail() {\n> 15 |     await expect(this.page.getByTestId('email-error')).toContainText('Email format is invalid');\n     |                                                        ^\n  16 |     await expect(this.page).toHaveURL(/\\/auth\\/forgot-password$/);\n  17 |   }\n  18 | }\n    at ResetPasswordPage.expectInvalidEmail (/workspace/scratch/1183767fb436/sis2-playwright/pages/reset-password.page.ts:15:56)\n    at /workspace/scratch/1183767fb436/sis2-playwright/tests/reset-password.spec.ts:10:27"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T14:49:30.250Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/workspace/scratch/1183767fb436/sis2-playwright/test-results/reset-password-TC07---malf-e6201-y-password-reset-validation-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/workspace/scratch/1183767fb436/sis2-playwright/test-results/reset-password-TC07---malf-e6201-y-password-reset-validation-chromium/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/workspace/scratch/1183767fb436/sis2-playwright/test-results/reset-password-TC07---malf-e6201-y-password-reset-validation-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/workspace/scratch/1183767fb436/sis2-playwright/test-results/reset-password-TC07---malf-e6201-y-password-reset-validation-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/workspace/scratch/1183767fb436/sis2-playwright/pages/reset-password.page.ts",
+                    "column": 56,
+                    "line": 15
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "193bb8f07ddb614d27ad-fb4c90b73ca60d4196d7",
+          "file": "reset-password.spec.ts",
+          "line": 7,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-17T14:47:46.268Z",
+    "duration": 142864.42200000002,
+    "expected": 5,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "sis2-playwright-toolshop",
+  "version": "1.0.0",
+  "description": "SIS 2: seven independent UI tests covering the five required scenarios",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "report": "playwright show-report",
+    "typecheck": "tsc --noEmit",
+    "test:parallel": "playwright test --workers=4",
+    "test:stability": "playwright test --repeat-each=2 --workers=4"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "1.56.1",
+    "@types/node": "24.10.0",
+    "typescript": "5.9.3"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  }
+}

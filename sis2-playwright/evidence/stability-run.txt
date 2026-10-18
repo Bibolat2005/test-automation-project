@@ -1,0 +1,56 @@
+
+Running 14 tests using 4 workers
+
+(node:18) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:19) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:20) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:21) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:18) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:20) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:19) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:21) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   3 [chromium] › tests/login.spec.ts:7:5 › TC03 - invalid credentials show an error and stay on login (20.2s)
+  ✓   4 [chromium] › tests/compare-products.spec.ts:2:5 › TC05 - Combination Pliers and Pliers are distinct and have different positive prices (22.6s)
+  ✓   1 [chromium] › tests/login.spec.ts:2:5 › TC02 - valid credentials reach the account page (22.8s)
+  ✓   2 [chromium] › tests/buy-product.spec.ts:2:5 › TC04 - buy two Combination Pliers and complete checkout (29.7s)
+(node:450) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:450) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   6 [chromium] › tests/reset-password.spec.ts:2:5 › TC06 - known customer receives password-reset confirmation (14.3s)
+  ✓   5 [chromium] › tests/register.spec.ts:2:5 › TC01 - register a unique customer and verify the account by signing in (17.0s)
+(node:551) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:559) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:551) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:559) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   7 [chromium] › tests/reset-password.spec.ts:7:5 › TC07 - unregistered email is rejected by password reset (16.6s)
+(node:699) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:699) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   8 [chromium] › tests/buy-product.spec.ts:2:5 › TC04 - buy two Combination Pliers and complete checkout (22.7s)
+  ✓  11 [chromium] › tests/login.spec.ts:7:5 › TC03 - invalid credentials show an error and stay on login (14.0s)
+  ✓   9 [chromium] › tests/compare-products.spec.ts:2:5 › TC05 - Combination Pliers and Pliers are distinct and have different positive prices (18.1s)
+  ✓  10 [chromium] › tests/login.spec.ts:2:5 › TC02 - valid credentials reach the account page (18.3s)
+  ✓  12 [chromium] › tests/register.spec.ts:2:5 › TC01 - register a unique customer and verify the account by signing in (14.1s)
+  ✓  13 [chromium] › tests/reset-password.spec.ts:2:5 › TC06 - known customer receives password-reset confirmation (13.2s)
+  ✓  14 [chromium] › tests/reset-password.spec.ts:7:5 › TC07 - unregistered email is rejected by password reset (14.1s)
+
+  14 passed (1.2m)
+
+To open last HTML report run:
+[36m[39m
+[36m  npx playwright show-report[39m
+[36m[39m
