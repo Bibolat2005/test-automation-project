@@ -30,7 +30,12 @@ defaults:
 jobs:
   test:
     name: Tests (shard ${{ matrix.shardIndex }}/${{ matrix.shardTotal }})
-    runs-on: ubuntu-24.04
+    if: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository }}
+    runs-on: [self-hosted, Windows, X64]
+    defaults:
+      run:
+        shell: cmd
+        working-directory: sis2-playwright
     timeout-minutes: 30
 
     strategy:
@@ -54,12 +59,12 @@ jobs:
           cache-dependency-path: sis2-playwright/package-lock.json
 
       - name: Check required secret
-        shell: bash
+        shell: powershell
         run: |
-          if [ -z "$TEST_PASSWORD" ]; then
-            echo "::error::Create the repository Actions secret TEST_PASSWORD."
+          if ([string]::IsNullOrWhiteSpace($env:TEST_PASSWORD)) {
+            Write-Output "::error::Create the repository Actions secret TEST_PASSWORD."
             exit 1
-          fi
+          }
 
       - name: Install dependencies
         run: npm ci
@@ -71,7 +76,7 @@ jobs:
         run: node scripts/check-forbid-only.cjs
 
       - name: Install Playwright browsers
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install chromium
 
       - name: Run Playwright tests
         run: npx playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
