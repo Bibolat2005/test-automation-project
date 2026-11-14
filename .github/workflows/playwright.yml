@@ -106,6 +106,11 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
 
+    defaults:
+      run:
+        shell: bash
+        working-directory: sis2-playwright
+
     steps:
       - uses: actions/checkout@v4
 
