@@ -25,6 +25,7 @@ concurrency:
 
 defaults:
   run:
+    shell: cmd
     working-directory: sis2-playwright
 
 jobs:
@@ -59,12 +60,9 @@ jobs:
           cache-dependency-path: sis2-playwright/package-lock.json
 
       - name: Check required secret
-        shell: powershell
+        shell: cmd
         run: |
-          if ([string]::IsNullOrWhiteSpace($env:TEST_PASSWORD)) {
-            Write-Output "::error::Create the repository Actions secret TEST_PASSWORD."
-            exit 1
-          }
+          node -e "if (!process.env.TEST_PASSWORD || !process.env.TEST_PASSWORD.trim()) { console.error('::error::Create the repository Actions secret TEST_PASSWORD.'); process.exit(1); } console.log('TEST_PASSWORD is configured.');"
 
       - name: Install dependencies
         run: npm ci
