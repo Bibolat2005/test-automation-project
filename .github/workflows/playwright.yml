@@ -1,0 +1,144 @@
+name: Playwright Tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      shards:
+        description: Number of shards for the timing comparison
+        type: choice
+        required: true
+        default: '4'
+        options: ['1', '4']
+      collect_trace:
+        description: Record traces even for passing tests
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event_name }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: sis2-playwright
+
+jobs:
+  test:
+    name: Tests (shard ${{ matrix.shardIndex }}/${{ matrix.shardTotal }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    strategy:
+      fail-fast: false
+      matrix:
+        shardIndex: ${{ fromJSON(inputs.shards == '1' && '[1]' || '[1,2,3,4]') }}
+        shardTotal: ${{ fromJSON(inputs.shards == '1' && '[1]' || '[4]') }}
+
+    env:
+      BASE_URL: ${{ vars.BASE_URL || 'https://practicesoftwaretesting.com' }}
+      TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
+      CI_TRACE: ${{ inputs.collect_trace && 'on' || 'on-first-retry' }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: sis2-playwright/package-lock.json
+
+      - name: Check required secret
+        shell: bash
+        run: |
+          if [ -z "$TEST_PASSWORD" ]; then
+            echo "::error::Create the repository Actions secret TEST_PASSWORD."
+            exit 1
+          fi
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check TypeScript
+        run: npm run typecheck
+
+      - name: Check forbidOnly guard
+        run: node scripts/check-forbid-only.cjs
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Run Playwright tests
+        run: npx playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+
+      - name: Upload blob report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: blob-report-${{ matrix.shardIndex }}
+          path: sis2-playwright/blob-report/
+          retention-days: 1
+          if-no-files-found: error
+
+      - name: Upload traces and JUnit
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-${{ matrix.shardIndex }}
+          path: |
+            sis2-playwright/test-results/
+            sis2-playwright/reports/
+          retention-days: 14
+          if-no-files-found: warn
+
+  merge-reports:
+    name: Merge reports
+    needs: [test]
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: sis2-playwright/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download blob reports
+        uses: actions/download-artifact@v4
+        with:
+          path: sis2-playwright/all-blob-reports
+          pattern: blob-report-*
+          merge-multiple: true
+
+      - name: Merge into HTML and JUnit
+        run: npx playwright merge-reports --config merge.config.ts ./all-blob-reports
+
+      - name: Upload HTML report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: sis2-playwright/playwright-report/
+          retention-days: 14
+          if-no-files-found: error
+
+      - name: Upload merged JUnit
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: junit-report
+          path: sis2-playwright/reports/junit-merged.xml
+          retention-days: 14
+          if-no-files-found: error

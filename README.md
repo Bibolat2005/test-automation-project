@@ -1,4 +1,21 @@
-# SIS 2 — Playwright Test Automation
+# SIS 3 — Playwright Test Automation
+
+## CI
+
+[![Playwright Tests](https://github.com/Bibolat2005/test-automation-project/actions/workflows/playwright.yml/badge.svg?branch=main)](https://github.com/Bibolat2005/test-automation-project/actions/workflows/playwright.yml)
+
+I chose GitHub Actions because the project is already on GitHub and it does not need a separate CI server.
+
+The pipeline runs on every push and pull request. It installs dependencies, uses the npm cache, installs Chromium and runs all seven tests across four parallel shards.
+
+A separate job merges the results into one HTML report and one JUnit report. Final reports and test outputs are kept for 14 days.
+
+In CI mode, the configuration enables forbidOnly, two retries, JUnit and blob reporters. Traces are normally recorded on the first retry.
+
+The repository needs:
+- Variable BASE_URL: https://practicesoftwaretesting.com
+- Secret TEST_PASSWORD: a separate password for generated test accounts
+
 
 All tests are passing and the reports are attached:
 The main screenshots:
