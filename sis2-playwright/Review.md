@@ -47,3 +47,41 @@ The final checks were kept: the server must create the order successfully, and t
 A failed test does not always mean that a locator is wrong or that more waiting time is needed. The screenshot and server response can explain what actually happened.
 
 I also learned that automatic form updates need to be considered when writing tests. Manually filling a field can conflict with values loaded by the application.
+
+
+
+## CI pipeline review
+
+I also used AI assistance while adding GitHub Actions to the project. I applied the changes in VS Code and checked the results in the Actions logs.
+
+### Unsupported Ubuntu version
+
+The first pipeline failed while installing Chromium. The runner used Ubuntu 26.04, which was not supported by the project's Playwright version.
+
+The Ubuntu report job now uses ubuntu-24.04 instead of ubuntu-latest.
+
+### Cloudflare verification
+
+Some tests passed locally but failed on GitHub-hosted runners. The traces showed that registration returned HTTP 201, while the login and password reset pages returned HTTP 403.
+
+The screenshots showed Cloudflare security verification instead of the expected forms. This explained why Playwright could not find the email field.
+
+I moved the browser jobs to Windows self-hosted runners. I kept the checks for successful login, order creation and invoice confirmation.
+
+### Windows script execution
+
+The secret check originally ran through PowerShell. Windows blocked the generated script because script execution was disabled.
+
+The check now runs through cmd and Node.js. It checks that TEST_PASSWORD exists without printing the password.
+
+### Report merging
+
+The Ubuntu merge job inherited the Windows cmd shell and failed with "cmd: command not found".
+
+I added an explicit bash shell to the merge job. The browser jobs continue to use cmd.
+
+### Action download timeout
+
+One job failed before the tests started because the runner could not download actions/upload-artifact from GitHub within the timeout.
+
+This was a setup failure, so changing the test assertions would not have fixed it.

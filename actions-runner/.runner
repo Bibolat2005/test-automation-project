@@ -1,0 +1,11 @@
+﻿{
+  "agentId": 22,
+  "agentName": "DESKTOP-77KOTIK",
+  "poolId": 1,
+  "poolName": "Default",
+  "serverUrl": "https://pipelinesghubeus26.actions.githubusercontent.com/6DeupGE8ZU9n5H5VjCUbdSAnaALQzskwR4XB3mKoSKJZIdaUUi/",
+  "gitHubUrl": "https://github.com/Bibolat2005/test-automation-project",
+  "workFolder": "_work",
+  "useV2Flow": true,
+  "serverUrlV2": "https://broker.actions.githubusercontent.com/"
+}
