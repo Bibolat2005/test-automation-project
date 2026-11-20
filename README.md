@@ -2,6 +2,7 @@
 All requirements are done and all pipelines are passing. Also all test cases are passing locally
 <img width="1918" height="802" alt="Снимок экрана 2026-11-20 175211" src="https://github.com/user-attachments/assets/685354f3-665a-47c4-8cac-97ab789a18db" />
 
+Pipeline took 26 minutes because of internet connection unstablity
 <img width="1915" height="1079" alt="image" src="https://github.com/user-attachments/assets/60f2bd21-948c-4a1c-92e5-3bec118485a2" />
 
 
